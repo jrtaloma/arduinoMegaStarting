@@ -5,13 +5,14 @@ CC_OPTS=-Wall --std=gnu99 -DF_CPU=16000000UL  -O3 -funsigned-char -funsigned-bit
 AVRDUDE=avrdude
 
 # com1 = serial port. Use lpt1 to connect to parallel port.
-AVRDUDE_PORT = /dev/ttyACM0    # programmer connected to serial device
-AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET)
+AVRDUDE_PORT = /dev/ttyUSB0    # programmer connected to serial device
+AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET):i
 AVRDUDE_FLAGS = -p m2560 -P $(AVRDUDE_PORT) -c arduino -b 115200
 AVRDUDE_FLAGS += $(AVRDUDE_NO_VERIFY)
 AVRDUDE_FLAGS += $(AVRDUDE_VERBOSE)
 AVRDUDE_FLAGS += $(AVRDUDE_ERASE_COUNTER)
-AVRDUDE_FLAGS += -V -F -C /etc/avrdude.conf
+AVRDUDE_FLAGS += -D -q -V -C /etc/avrdude.conf
+AVRDUDE_FLAGS += -c wiring
 
 HEADERS=delay.h\
 	digio.h\

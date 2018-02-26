@@ -13,7 +13,7 @@ int main() {
 	char byte;
 	char s[STR_LENGTH];
 	
-	int fd = open("/dev/ttyACM0", O_RDWR);
+	int fd = open("/dev/ttyUSB0", O_RDWR);
 	if (fd < 0) {
 		perror("error");
 		exit(-1);

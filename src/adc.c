@@ -22,7 +22,7 @@ void adc_init_with_prescaler(uint8_t prescaler) {
 		default: ADCSRA |= (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0); break;
 	}
 	
-	ADCSRA |= (1 << ADEN);
+	ADCSRA |= (1<<ADEN);
 }
 
 void adc_enableInterrupt(void) {
@@ -30,10 +30,10 @@ void adc_enableInterrupt(void) {
 }
 
 uint16_t adc_read(uint8_t ch) {
-	// analog input channels in ATmega2560: ADC0 ... ADC15 
-	if (ch > 15) ch = 0;
-	ADMUX |= ch;
-	
+	// this reading function supports only ADC0 ... ADC7, not ADC8 ... ADC15	
+	ch &= 0b00000111;
+	ADMUX = (ADMUX & 0xF8)|ch;
+
 	// starting single conversion
 	ADCSRA |= (1<<ADSC);
 	

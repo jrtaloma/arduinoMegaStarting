@@ -12,7 +12,7 @@ speed_t baud = B115200; /* baud rate */
 
 int main() {
 	char buf[BUF_SIZE];
-	int fd = open("/dev/ttyACM0", O_RDWR);
+	int fd = open("/dev/ttyUSB0", O_RDWR);
 	if (fd < 0) {
 		perror("error");
 		exit(-1);

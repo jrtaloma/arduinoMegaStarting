@@ -49,7 +49,7 @@ int main(void){
 	sei(); // enable global interrupts
 	
 	while(1){
-		adc_value = adc_read(5); // read adc value at A5	
+		adc_value = adc_read(7); // read adc value at ADC7	
 	}
 	
 	return 0;
