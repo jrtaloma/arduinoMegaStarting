@@ -4,12 +4,12 @@
 #include <string.h>
 
 void SPI_MasterInit(void){
-	DDRB = (1<<2)|(1<<1); // set SCK, MOSI as Output
+	DDRB = (1<<DDB2)|(1<<DDB1)|(1<<DDB0); // set SCK, MOSI, SS as Output
 	SPCR = (1<<SPE)|(1<<MSTR)|(1<<SPR0); // enable SPI, set as Master, prescaler: fck/16
 }
 
 void SPI_SlaveInit(void){
-	DDRB = (1<<3); // MISO as Output
+	DDRB = (1<<DDB3); // MISO as Output
 	SPCR = (1<<SPE); // enable SPI
 }
 
