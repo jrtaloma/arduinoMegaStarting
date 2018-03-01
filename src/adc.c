@@ -29,16 +29,12 @@ void adc_enableInterrupt(void) {
 	ADCSRA |= (1<<ADIE);
 }
 
+/* https://bennthomsen.wordpress.com/arduino/peripherals/analogue-input/ */
 uint16_t adc_read(uint8_t ch) {
-	// this reading function supports only ADC0 ... ADC7, not ADC8 ... ADC15	
-	ch &= 0b00000111;
-	ADMUX = (ADMUX & 0xF8)|ch;
-
-	// starting single conversion
-	ADCSRA |= (1<<ADSC);
-	
-	// ADSC becomes 0 at the end of conversion and breaks the loop
-	while(ADCSRA & (1<<ADSC));
-	
-	return (ADC);
+	ADMUX &= 0xE0; // clear bits MUX0-4
+	ADMUX |= ch&0x07; // defines the new ADC channel to be read by setting bits MUX0-2
+	ADCSRB = ch&(1<<3); // set MUX5
+	ADCSRA |= (1<<ADSC); // starts a new conversion
+	while(ADCSRA & (1<<ADSC)); // wait until the conversion is done
+	return ADCW; // returns the ADC value of the chosen channel
 }
