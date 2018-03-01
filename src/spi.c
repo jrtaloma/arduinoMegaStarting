@@ -13,14 +13,18 @@ void SPI_SlaveInit(void){
 	SPCR = (1<<SPE); // enable SPI
 }
 
-uint8_t SPI_tranceiver(uint8_t data){
+void SPI_MasterTransmit(uint8_t data){
 	SPDR = data; // load data into the buffer
 	while (!(SPSR & (1<<SPIF))); // wait until transmission complete
-	return (SPDR); // return received data
+}
+
+uint8_t SPI_SlaveReceive(void){
+	while (!(SPSR & (1<<SPIF))); // wait until transmission complete
+	return SPDR; // return data register
 }
 
 void SPI_sendString(char* s){
 	for (int i=0; i<strlen(s); i++){
-		SPI_tranceiver((uint8_t)s[i]);
+		SPI_MasterTransmit((uint8_t)s[i]);
 	}
 }

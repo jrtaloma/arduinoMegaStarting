@@ -3,8 +3,6 @@
 #include "delay.h"
 #include "uart.h"
 #include "spi.h"
-
-#define ACK 0x7E
  
 struct UART* uart; 
 
@@ -24,7 +22,7 @@ int main(void){
 	int size = 0;
 	
 	while(1){
-		data = SPI_tranceiver(ACK);
+		data = SPI_SlaveReceive();
 		rx_buffer[size] = data;
 		++size;
 		rx_buffer[size] = 0;
