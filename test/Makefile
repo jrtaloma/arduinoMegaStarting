@@ -22,6 +22,7 @@ HEADERS=delay.h\
 	pwm.h\
 	timer.h\
 	uart.h\
+	uart1.h\
 
 INCLUDES=$(addprefix $(PREFIX)/../include/, $(HEADERS))
 
@@ -33,6 +34,7 @@ OBJS=delay.o\
      pwm.o\
      timer.o\
      uart.o\
+     uart1.o\
 
 BINS=digio_test.elf\
 	 eeprom_test.elf\
@@ -40,6 +42,7 @@ BINS=digio_test.elf\
 	 pwm_test.elf\
 	 timer_test.elf\
 	 uart_test.elf\
+         uart1_test.elf\
 	 
 .phony:	clean all
 
