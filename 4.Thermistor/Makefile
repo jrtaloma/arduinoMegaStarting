@@ -17,14 +17,17 @@ AVRDUDE_FLAGS += -c wiring
 HEADERS=delay.h\
 	adc.h\
 	uart.h\
+	lcd.h\
 
 INCLUDES=$(addprefix $(PREFIX)/../include/, $(HEADERS))
 
 OBJS=delay.o\
      adc.o\
      uart.o\
+     lcd.o\
 
-BINS=temp_serial.elf\
+BINS=temp_test.elf\
+	 temp_serial.elf\
 
 .phony:	clean all
 
