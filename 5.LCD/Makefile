@@ -22,7 +22,7 @@ INCLUDES=$(addprefix $(PREFIX)/../include/, $(HEADERS))
 OBJS=delay.o\
      lcd.o\
 
-BINS=test_lcd.elf\
+BINS=lcd_test.elf\
 
 .phony:	clean all
 

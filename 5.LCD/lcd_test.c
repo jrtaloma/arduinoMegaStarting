@@ -15,6 +15,6 @@ int main(void){
 		delayMs(1000);
 		lcd_clrscr();
 		lcd_puts(msgOff);
-		_delay_ms(1000);
+		delayMs(1000);
 	}
 }
